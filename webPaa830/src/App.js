@@ -1480,9 +1480,10 @@ class MasterTable extends React.Component{
         super();
         this.state = {
 
-            masterAPI: [],
+            masterAPI: [{"horaentrega":"06:00 PM","tipopago":"tst","pending":0,"status":"pending","project":1221,"comments":[],"time":"01:11:34 pm","item":[{"firstname":"Test Test2","item":"TEST","development":"Lavar y Prensa","quantity":111,"rnc":"123","project":1110,"itemDetail":[],"id":1,"telefono":"8097281244"}],"name":"Orange T-Shirt Round Neck","isLiked":"Like","desc":0,"idOrder":"19","fechaentrega":"Domingo 14/07/2019","date":"2019-07-11","ncf":"B00000000000001","balance":0,"itbis":219.78,"current":0,"image":"orange.jpg","like":12,"telefono":"8097281244","grandTotal":1221,"id":"22","agregado":0}],
             onShowComment: "none",
-            searchData : ""
+            searchData : "",
+
         }
     }
 
@@ -1506,26 +1507,36 @@ class MasterTable extends React.Component{
             }
         }
 
+
         fetch('https://194ledou38.execute-api.us-east-1.amazonaws.com/live/setconversation', {
             
             method: 'post',
             headers: API_HEADERS,
             body: JSON.stringify(newConversation)
         }).then(response => response.json()).then(response => {
-            
-            console.log(response)
-            
+
+            let nextState = this.state.masterAPI;
+
+            nextState.push(response)
+
+            this.setState({
+                masterAPI: nextState
+            })
+
+            console.log(response.dialogAction.message.content)
+
         })
         .catch((error)=>{
             console.log('Error fetching and parsing data', error);
         });
+
     }
 
     render(){
 
         var rows = []        
 
-        let items = this.props.masterData
+        let items = this.state.masterAPI
 
         for(var i=0;i<items.length;i++){
             
@@ -1575,7 +1586,7 @@ class MasterTable extends React.Component{
                         </div>
                         </Col>
                         <Col md={11}>                            
-                            <form onSubmit={this.onComment}>         
+                            <form onSubmit={this.onComment.bind(this)}>         
                                     <Row>                                                                                                            
                                         <FormGroup controlId="formHorizontalName">                                        
                                             <Col md={10}>
