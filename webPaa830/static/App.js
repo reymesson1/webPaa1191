@@ -2042,7 +2042,35 @@ var MasterTable = function (_React$Component15) {
 
             event.preventDefault();
 
-            console.log(event.target.firstname.value);
+            var newConversation = {
+                "bot": {
+                    "alias": "null",
+                    "name": "BakeryDepartment",
+                    "version": "$LATEST"
+                },
+                "currentIntent": {
+                    "confirmationStatus": "None",
+                    "name": "BakeryDepartment",
+                    "slots": {
+                        "Amount": "2",
+                        "BakeryProduct": "bread"
+                    }
+                }
+            };
+
+            fetch('https://194ledou38.execute-api.us-east-1.amazonaws.com/live/setconversation', {
+
+                method: 'post',
+                headers: API_HEADERS,
+                body: JSON.stringify(newConversation)
+            }).then(function (response) {
+                return response.json();
+            }).then(function (response) {
+
+                console.log(response);
+            }).catch(function (error) {
+                console.log('Error fetching and parsing data', error);
+            });
         }
     }, {
         key: "render",

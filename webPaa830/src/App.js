@@ -1490,7 +1490,35 @@ class MasterTable extends React.Component{
 
         event.preventDefault();
 
-        console.log(event.target.firstname.value)
+        let newConversation = {
+            "bot": {
+                "alias": "null",
+                "name": "BakeryDepartment",
+                "version": "$LATEST"
+            },
+            "currentIntent": {
+                "confirmationStatus": "None",
+                "name": "BakeryDepartment",
+                "slots": {
+                    "Amount": "2",
+                    "BakeryProduct": "bread"
+                }
+            }
+        }
+
+        fetch('https://194ledou38.execute-api.us-east-1.amazonaws.com/live/setconversation', {
+            
+            method: 'post',
+            headers: API_HEADERS,
+            body: JSON.stringify(newConversation)
+        }).then(response => response.json()).then(response => {
+            
+            console.log(response)
+            
+        })
+        .catch((error)=>{
+            console.log('Error fetching and parsing data', error);
+        });
     }
 
     render(){
