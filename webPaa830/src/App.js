@@ -1502,7 +1502,8 @@ class MasterTable extends React.Component{
                 "name": "BakeryDepartment",
                 "slots": {
                     "Amount": "2",
-                    "BakeryProduct": "bread"
+                    "BakeryProduct": "bread",
+                    "BakeryDepartmentUnit": "soft"
                 }
             }
         }
@@ -1542,7 +1543,7 @@ class MasterTable extends React.Component{
             
             rows.push(                    
                 <div className="card">                                                                                          
-                    <Row>                                       
+                    <Row>
                         <Col md={1}></Col>
                         <Col md={2}>
                             <Row>
@@ -1551,7 +1552,7 @@ class MasterTable extends React.Component{
                         </Col>
                         <Col md={6}>
                             <Row>
-                                <h5>{items[i].name}</h5>
+                                <h5>{'I need some bread'}</h5>
                             </Row>
                             <Row>                                        
                                 <Col md={2}>
@@ -1563,6 +1564,30 @@ class MasterTable extends React.Component{
                             </Row>                                        
                         </Col>                                    
                     </Row>
+                    <hr/>
+                    <Row>
+                        <Col md={7}></Col>
+                        <Col md={3}>
+                            <Row>
+                                <h5>{'I need some bread'}</h5>
+                            </Row>
+                            <Row>                                        
+                                <Col md={2}>
+                                    <i className="fa fa-comments" aria-hidden="true"></i>
+                                </Col>
+                                <Col md={6}>
+                                    <h5>{'at 03/01/2019'}</h5>
+                                </Col>
+                            </Row>                                        
+                        </Col>
+                        <Col md={1}>
+                            <Row>
+                                <img src={"http://localhost:8084/"+"img_avatar.png"}  alt="Avatar" style={{"width":"125%","border-radius": "135px"}}/>
+                            </Row>                                            
+                        </Col>                        
+                    </Row>
+                    
+                    
                     <hr/>
                 </div>
             )
@@ -1619,10 +1644,58 @@ class MasterTableLike extends React.Component{
     }
 }
 
-class MasterTableComment extends React.Component{
+class MasterTableCommentFromYou extends React.Component{
     render(){
         return(            
-            <button className="btn btn-link" onClick={this.props.onShow} name="comment" value={'{"id":'+this.props.id+',"press":"comments"}'}><i className="fa fa-comments" aria-hidden="true"></i> Comments</button>
+            <Row>                                       
+                <Col md={1}></Col>
+                <Col md={2}>
+                    <Row>
+                        <img src={"http://localhost:8084/"+"img_avatar.png"}  alt="Avatar" style={{"width":"66%","border-radius": "135px"}}/>
+                    </Row>                                            
+                </Col>
+                <Col md={6}>
+                    <Row>
+                        <h5>{'I need some bread'}</h5>
+                    </Row>
+                    <Row>                                        
+                        <Col md={2}>
+                            <i className="fa fa-comments" aria-hidden="true"></i>
+                        </Col>
+                        <Col md={6}>
+                            <h5>{'at 03/01/2019'}</h5>
+                        </Col>
+                    </Row>                                        
+                </Col>                                    
+            </Row>
+        );
+    }
+}
+
+class MasterTableCommentFromMe extends React.Component{
+    render(){
+        return(            
+            <Row>                                       
+                <Col md={1}></Col>
+                <Col md={2}>
+                    <Row>
+                        <img src={"http://localhost:8084/"+"img_avatar.png"}  alt="Avatar" style={{"width":"66%","border-radius": "135px"}}/>
+                    </Row>                                            
+                </Col>
+                <Col md={6}>
+                    <Row>
+                        <h5>{'I need some bread'}</h5>
+                    </Row>
+                    <Row>                                        
+                        <Col md={2}>
+                            <i className="fa fa-comments" aria-hidden="true"></i>
+                        </Col>
+                        <Col md={6}>
+                            <h5>{'at 03/01/2019'}</h5>
+                        </Col>
+                    </Row>                                        
+                </Col>                                    
+            </Row>
         );
     }
 }
